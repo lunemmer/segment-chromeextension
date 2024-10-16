@@ -118,9 +118,13 @@ connection.onMessage.addListener((msg) => {
 function filterEvents(keyPressedEvent) {
 	var filter = new RegExp(keyPressedEvent.target.value, 'gi');
 	var eventElements = document.getElementById('trackMessages').getElementsByClassName('eventTracked');
+
+
 	for(eventElement of eventElements) {
 		var eventName = eventElement.getElementsByClassName('eventName')[0].textContent;
-		if (eventName.match(filter)) {
+		var eventContent = eventElement.getElementsByClassName('eventContent')[0]?.textContent;
+
+		if (eventName.match(filter) || eventContent.match(filter)) {
 			eventElement.classList.remove('hidden');
 		} else {
 			eventElement.classList.add('hidden');
